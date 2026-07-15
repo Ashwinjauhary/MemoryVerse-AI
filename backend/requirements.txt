@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+supabase
+python-multipart
+pymupdf
+pytesseract
+pydantic
+python-dotenv
+httpx
+beautifulsoup4
+cloudinary
+groq
+sentence-transformers
+Pillow
