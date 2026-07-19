@@ -106,7 +106,7 @@ For a detailed visual breakdown of the data flow, please see the [Architecture D
 | GET | `/api/timeline/{path_user_id}` | Yes | Retrieves all user documents sorted chronologically for the timeline view. |
 
 ## Live Demo
-*(Link to live deployment will be added here once deployed)*
+*([https://memory-verse-ai-five.vercel.app/](https://memory-verse-ai-five.vercel.app/))*
 
 ## Known Limitations
 - **Route Protection:** Frontend route protection currently relies on client-side state rather than server-side middleware.
