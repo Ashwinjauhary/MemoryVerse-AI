@@ -10,8 +10,16 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install
+# Set memory allocator tuning for low-RAM environments like Render Free Tier
+ENV MALLOC_ARENA_MAX=2
+
+# Copy requirements
 COPY requirements.txt .
+
+# Install CPU-only PyTorch first to prevent downloading massive CUDA binaries
+RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Install the rest of the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the backend code
