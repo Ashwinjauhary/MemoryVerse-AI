@@ -58,7 +58,10 @@ def find_related_documents(doc_id: str, user_id: str, top_k: int = 5) -> list[di
     if not results.data:
         return []
 
-    # 3. For each candidate, verify relationship with Groq
+    # 3. Clear existing relationships for this source document to avoid duplicates on retry
+    supabase.table("relationships").delete().eq("source_doc_id", doc_id).execute()
+
+    # 4. For each candidate, verify relationship with Groq
     verified = []
     for candidate in results.data:
         try:

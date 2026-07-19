@@ -33,7 +33,7 @@ create table if not exists relationships (
 -- 4. Vector similarity index
 create index if not exists documents_embedding_idx
   on documents using ivfflat (embedding vector_cosine_ops)
-  with (lists = 100);
+  with (lists = 1);
 
 -- 5. RPC function for pgvector similarity search
 --    Called by Module 3 (relationships) and Module 5 (search)
