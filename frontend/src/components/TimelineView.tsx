@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { supabase } from "../lib/supabase";
+import { API_URL } from "@/lib/api";
 import { GlassDatePicker } from "./GlassDatePicker";
 import { Edit2, Trash2, X, ChevronDown } from "lucide-react";
 
@@ -97,7 +98,7 @@ export default function TimelineView({ userId, refreshTrigger = 0 }: { userId: s
     const token = session?.access_token;
     
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/timeline/${userId}`, {
+      const res = await fetch(`${API_URL}/api/timeline/${userId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -131,7 +132,7 @@ export default function TimelineView({ userId, refreshTrigger = 0 }: { userId: s
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
-      const res = await fetch(`http://127.0.0.1:8000/api/documents/${editingItem.id}`, {
+      const res = await fetch(`${API_URL}/api/documents/${editingItem.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify(editForm)
@@ -154,7 +155,7 @@ export default function TimelineView({ userId, refreshTrigger = 0 }: { userId: s
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
-      const res = await fetch(`http://127.0.0.1:8000/api/documents/delete`, {
+      const res = await fetch(`${API_URL}/api/documents/delete`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ doc_ids: [id] })

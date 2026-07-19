@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link as LinkIcon, FileText, Download, CheckCircle, Search, Filter, ArrowUpDown, ChevronDown, RefreshCw, AlertTriangle, Edit2, Trash2, X } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import { API_URL } from "@/lib/api";
 import { GlassDatePicker } from "./GlassDatePicker";
 
 interface DocumentRelationship {
@@ -152,7 +153,7 @@ export default function LibraryView({ userId }: LibraryViewProps) {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const res = await fetch(`http://127.0.0.1:8000/api/timeline/${userId}`, {
+      const res = await fetch(`${API_URL}/api/timeline/${userId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -176,7 +177,7 @@ export default function LibraryView({ userId }: LibraryViewProps) {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const res = await fetch(`http://127.0.0.1:8000/api/documents/retry`, {
+      const res = await fetch(`${API_URL}/api/documents/retry`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -199,7 +200,7 @@ export default function LibraryView({ userId }: LibraryViewProps) {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const res = await fetch(`http://127.0.0.1:8000/api/documents/delete`, {
+      const res = await fetch(`${API_URL}/api/documents/delete`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -233,7 +234,7 @@ export default function LibraryView({ userId }: LibraryViewProps) {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
-      const res = await fetch(`http://127.0.0.1:8000/api/documents/${editingItem.id}`, {
+      const res = await fetch(`${API_URL}/api/documents/${editingItem.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify(editForm)
@@ -256,7 +257,7 @@ export default function LibraryView({ userId }: LibraryViewProps) {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
-      const res = await fetch(`http://127.0.0.1:8000/api/documents/delete`, {
+      const res = await fetch(`${API_URL}/api/documents/delete`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ doc_ids: [id] })

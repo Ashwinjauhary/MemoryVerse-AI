@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "../lib/supabase";
+import { API_URL } from "@/lib/api";
 
 interface MatchedDocument {
   id: string;
@@ -82,7 +83,7 @@ export default function SmartSearch({ userId }: { userId: string }) {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const res = await fetch("http://127.0.0.1:8000/api/search", {
+      const res = await fetch(`${API_URL}/api/search`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

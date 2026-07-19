@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { UploadCloud, Link as LinkIcon, AlertCircle, FileType, CheckCircle2 } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import { API_URL } from "@/lib/api";
 
 export default function UploadUI({ userId, onUploadSuccess }: { userId: string; onUploadSuccess?: () => void }) {
   const [file, setFile] = useState<File | null>(null);
@@ -47,7 +48,7 @@ export default function UploadUI({ userId, onUploadSuccess }: { userId: string; 
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const res = await fetch("http://127.0.0.1:8000/api/documents/upload", {
+      const res = await fetch(`${API_URL}/api/documents/upload`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -91,7 +92,7 @@ export default function UploadUI({ userId, onUploadSuccess }: { userId: string; 
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
 
-      const res = await fetch("http://127.0.0.1:8000/api/documents/github", {
+      const res = await fetch(`${API_URL}/api/documents/github`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

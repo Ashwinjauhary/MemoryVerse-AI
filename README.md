@@ -79,17 +79,20 @@ For a detailed visual breakdown of the data flow, please see the [Architecture D
 | Variable | Description |
 |----------|-------------|
 | `SUPABASE_URL` | Your Supabase project URL |
-| `SUPABASE_KEY` | Your Supabase service role or anon key |
+| `SUPABASE_SERVICE_KEY` | Your Supabase service role key (required for backend auth/DB) |
 | `GROQ_API_KEY` | API key for Groq to access Llama models |
-| `CLOUDINARY_URL` | Cloudinary connection string for asset storage |
-| `JWT_SECRET` | Secret key used to sign and verify user JWT tokens |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
+| `FRONTEND_URL` | Production URL of the frontend (e.g., https://memoryverse.vercel.app) for CORS |
+| `TESSERACT_PATH` | (Optional) Path to tesseract executable if not in system PATH |
 
 ### Frontend (`frontend/.env.local`)
 | Variable | Description |
 |----------|-------------|
 | `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL (used for client-side auth/state) |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anon key |
-| `NEXT_PUBLIC_API_URL` | The URL of your FastAPI backend (e.g., `http://localhost:8000`) |
+| `NEXT_PUBLIC_API_URL` | URL of the deployed FastAPI backend (e.g. https://memoryverse-api.onrender.com) |
 
 ## API Endpoints
 

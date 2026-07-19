@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+import { API_URL } from "@/lib/api";
 import { User, LogOut, FileText, Activity } from "lucide-react";
 
 export default function ProfileView({ userId, userEmail }: { userId: string, userEmail: string }) {
@@ -17,7 +18,7 @@ export default function ProfileView({ userId, userEmail }: { userId: string, use
       const token = session?.access_token;
       
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/timeline/${userId}`, {
+        const res = await fetch(`${API_URL}/api/timeline/${userId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
